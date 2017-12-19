@@ -1,6 +1,6 @@
 package dextra.android.appbase.features.login
 
-import dextra.android.appbase.base.BaseActivity
+import android.support.v7.app.AppCompatActivity
 
-class LoginActivity : BaseActivity() {
+class LoginActivity : AppCompatActivity() {
 }

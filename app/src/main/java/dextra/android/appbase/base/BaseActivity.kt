@@ -1,6 +1,8 @@
 package dextra.android.appbase.base
 
+import android.arch.lifecycle.ViewModel
 import android.support.v7.app.AppCompatActivity
 
-open class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<out VM : ViewModel> : AppCompatActivity() {
+    protected abstract fun viewModel() : VM?
 }
