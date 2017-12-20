@@ -1,8 +1,8 @@
-## Instagram Cliente
+## Instagram Client
 
 ### Objetivo 01
  - Criar um aplicativo capaz de buscar posts por hashtags no instagram.
- - Listar resutados de busca com recyclerview, viewpager...
+ - Listar resultados de busca com recyclerview, viewpager...
  - Exibir detalhes de uma post com uma imagem, com descrição, likes...
 
 ### Objetivo 02
