@@ -1,8 +1,10 @@
 package dextra.android.appbase.features.home.model
 
 class HomeModel {
-
-    fun fetchPostsByHashTag(hashTag: String) : List<String>? {
-        return listOf("Hash1", "Hash2", "Hash3")
+    // TODO: Create a repository
+    // TODO: http request with hashTag
+    fun fetchPostsByHashTag(hashTag: String, callback:(error: Any?, result: List<String>) -> Unit) {
+        val result = listOf("Hash1", "Hash2", "Hash3")
+        callback(null, result)
     }
 }

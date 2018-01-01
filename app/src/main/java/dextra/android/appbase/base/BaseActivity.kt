@@ -6,5 +6,6 @@ import android.support.v7.app.AppCompatActivity
 abstract class BaseActivity<out VM : ViewModel> : AppCompatActivity() {
     protected abstract fun loadUI()
     protected abstract fun loadObservers()
+    protected abstract fun loadCallbacks()
     protected abstract fun viewModel() : VM?
 }
