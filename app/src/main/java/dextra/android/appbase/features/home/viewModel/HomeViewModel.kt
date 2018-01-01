@@ -15,7 +15,10 @@ class HomeViewModel
             when {
                 error != null -> handleErrorCallback("Request Error")
                 result.isEmpty() -> uiMessageCallback("No results")
-                else -> postsLiveData.value = result
+                else -> {
+                    uiMessageCallback("Results")
+                    postsLiveData.value = result
+                }
             }
         }
     }

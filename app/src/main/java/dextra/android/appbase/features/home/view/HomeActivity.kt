@@ -2,7 +2,6 @@ package dextra.android.appbase.features.home.view
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.os.Bundle
 import android.support.v7.widget.SearchView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -13,21 +12,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class HomeActivity : BaseActivity<HomeViewModel>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        loadUI()
-        loadObservers()
-    }
-
     override fun loadUI() {
         searchViewSetup()
-    }
-
-    override fun loadObservers() {
-        viewModel()?.postsLiveData?.observe(this, Observer<List<String>> { names ->
-            updateListOfPosts(names)
-        })
     }
 
     override fun loadCallbacks() {
@@ -42,8 +28,18 @@ class HomeActivity : BaseActivity<HomeViewModel>() {
         }
     }
 
+    override fun loadObservers() {
+        viewModel()?.postsLiveData?.observe(this, Observer<List<String>> { names ->
+            updateListOfPosts(names)
+        })
+    }
+
     override fun viewModel(): HomeViewModel? {
         return ViewModelProviders.of(this).get(HomeViewModel::class.java)
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
     }
 
     private fun searchViewSetup() {
