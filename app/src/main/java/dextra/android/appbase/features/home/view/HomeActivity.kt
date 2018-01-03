@@ -16,21 +16,18 @@ class HomeActivity : BaseActivity<HomeViewModel>() {
         searchViewSetup()
     }
 
-    override fun loadCallbacks() {
-        viewModel()?.uiMessageCallback = { message ->
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        }
-
-        viewModel()?.handleErrorCallback = { error ->
-            if (error is String) {
-                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
     override fun loadObservers() {
         viewModel()?.postsLiveData?.observe(this, Observer<List<String>> { names ->
             updateListOfPosts(names)
+        })
+
+        viewModel()?.uiErrorLiveDate?.observe(this, Observer { genericError ->
+            val isHandled = genericError?.isHandled ?: false
+
+            if (!isHandled) {
+                Toast.makeText(this, genericError?.message, Toast.LENGTH_SHORT).show()
+                genericError?.isHandled = true
+            }
         })
     }
 

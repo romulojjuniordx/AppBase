@@ -4,7 +4,8 @@ class HomeModel {
     // TODO: Create a repository
     // TODO: http request with hashTag
     fun fetchPostsByHashTag(hashTag: String, callback:(error: Any?, result: List<String>) -> Unit) {
-        val result = IntRange(1, 10).map { "$hashTag - $it" }
-        callback(null, result)
+        val result = IntRange(1, 10).map { "$hashTag - $it" } as MutableList<String>
+
+        callback( null, result)
     }
 }

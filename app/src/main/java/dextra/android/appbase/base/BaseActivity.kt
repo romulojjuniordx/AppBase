@@ -9,11 +9,9 @@ abstract class BaseActivity<out VM : ViewModel> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
         loadUI()
-        loadCallbacks()
         loadObservers()
     }
     protected abstract fun loadUI()
-    protected abstract fun loadCallbacks()
     protected abstract fun loadObservers()
     protected abstract fun viewModel() : VM?
     protected abstract fun getLayoutId() : Int
