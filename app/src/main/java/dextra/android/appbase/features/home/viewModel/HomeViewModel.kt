@@ -15,7 +15,7 @@ class HomeViewModel
         homeModel.fetchPostsByHashTag(hashTag) { error, result ->
             when {
                 error != null -> uiErrorLiveDate.value = GenericError("Try again")
-                result.isEmpty() -> uiErrorLiveDate.value = GenericError("No results", GenericError.Types.NO_RESULT)
+                result!!.isEmpty() -> uiErrorLiveDate.value = GenericError("No results", GenericError.Types.NO_RESULT)
                 else -> {
                     postsLiveData.value = result
                 }

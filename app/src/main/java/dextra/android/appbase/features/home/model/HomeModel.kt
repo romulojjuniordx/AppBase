@@ -1,11 +1,21 @@
 package dextra.android.appbase.features.home.model
 
-class HomeModel {
-    // TODO: Create a repository
-    // TODO: http request with hashTag
-    fun fetchPostsByHashTag(hashTag: String, callback:(error: Any?, result: List<String>) -> Unit) {
-        val result = IntRange(1, 10).map { "$hashTag - $it" } as MutableList<String>
+import dextra.android.appbase.repositories.PostsRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
-        callback( null, result)
+class HomeModel
+    constructor(
+            var postsRepository: PostsRepository = PostsRepository()
+    ){
+
+    fun fetchPostsByHashTag(hashTag: String, callback:(error: Any?, result: List<String>?) -> Unit) {
+        postsRepository.fetchPostsByHashTag(hashTag)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { posts -> callback(null, posts) },
+                        { e -> callback( e, null) }
+                )
     }
 }
